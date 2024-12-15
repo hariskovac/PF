@@ -17,23 +17,40 @@ public class Fighter {
     public Map map;
     public String imagePath;
 
-    public ArrayList<String> attack = new ArrayList<>();
+    public ArrayList<String> attackR = new ArrayList<>();
+    public ArrayList<String> attackL = new ArrayList<>();
     public int attackIndex = 0;
-    public ArrayList<String> dead = new ArrayList<>();
+
+    public ArrayList<String> deadR = new ArrayList<>();
+    public ArrayList<String> deadL = new ArrayList<>();
     public int deadIndex = 0;
-    public ArrayList<String> defend = new ArrayList<>();
+
+    public ArrayList<String> defendR = new ArrayList<>();
+    public ArrayList<String> defendL = new ArrayList<>();
     public int defendIndex;
-    public ArrayList<String> hit = new ArrayList<>();
+
+    public ArrayList<String> hitR = new ArrayList<>();
+    public ArrayList<String> hitL = new ArrayList<>();
     public int hitIndex = 0;
-    public ArrayList<String> idle = new ArrayList<>();
+
+    public ArrayList<String> idleR = new ArrayList<>();
+    public ArrayList<String> idleL = new ArrayList<>();
     public int idleIndex = 0;
-    public ArrayList<String> run = new ArrayList<>();
+
+    public ArrayList<String> runR = new ArrayList<>();
+    public ArrayList<String> runL = new ArrayList<>();
     public int runIndex;
-    public ArrayList<String> sattack = new ArrayList<>();
+
+    public ArrayList<String> sattackR = new ArrayList<>();
+    public ArrayList<String> sattackL = new ArrayList<>();
     public int sattackIndex = 0;
-    public ArrayList<String> special = new ArrayList<>();
+
+    public ArrayList<String> specialR = new ArrayList<>();
+    public ArrayList<String> specialL = new ArrayList<>();
     public int specialIndex = 0;
-    public ArrayList<String> ultimate = new ArrayList<>();
+
+    public ArrayList<String> ultimateR = new ArrayList<>();
+    public ArrayList<String> ultimateL = new ArrayList<>();
     public int ultimateIndex = 0;
 
     public void initFighter() {
@@ -53,22 +70,38 @@ public class Fighter {
 
         while (stats.loadRow()) {
             if (this.name.equalsIgnoreCase(stats.getString(0))) {
-                createAnimationArray(this.attack, stats.getInt(8), this.imagePath, "attack");
-                createAnimationArray(this.dead, stats.getInt(9), this.imagePath, "dead");
-                createAnimationArray(this.defend, stats.getInt(10), this.imagePath, "defend");
-                createAnimationArray(this.hit, stats.getInt(11), this.imagePath, "hit");
-                createAnimationArray(this.idle, stats.getInt(12), this.imagePath, "idle");
-                createAnimationArray(this.run, stats.getInt(13), this.imagePath, "run");
-                createAnimationArray(this.sattack, stats.getInt(14), this.imagePath, "sattack");
-                createAnimationArray(this.special, stats.getInt(15), this.imagePath, "special");
-                createAnimationArray(this.ultimate, stats.getInt(16), this.imagePath, "ultimate");
+                createAnimationArrayR(this.attackR, stats.getInt(8), this.imagePath, "attack");
+                createAnimationArrayR(this.deadR, stats.getInt(9), this.imagePath, "dead");
+                createAnimationArrayR(this.defendR, stats.getInt(10), this.imagePath, "defend");
+                createAnimationArrayR(this.hitR, stats.getInt(11), this.imagePath, "hit");
+                createAnimationArrayR(this.idleR, stats.getInt(12), this.imagePath, "idle");
+                createAnimationArrayR(this.runR, stats.getInt(13), this.imagePath, "run");
+                createAnimationArrayR(this.sattackR, stats.getInt(14), this.imagePath, "sattack");
+                createAnimationArrayR(this.specialR, stats.getInt(15), this.imagePath, "special");
+                createAnimationArrayR(this.ultimateR, stats.getInt(16), this.imagePath, "ultimate");
+
+                createAnimationArrayL(this.attackL, stats.getInt(8), this.imagePath, "attack");
+                createAnimationArrayL(this.deadL, stats.getInt(9), this.imagePath, "dead");
+                createAnimationArrayL(this.defendL, stats.getInt(10), this.imagePath, "defend");
+                createAnimationArrayL(this.hitL, stats.getInt(11), this.imagePath, "hit");
+                createAnimationArrayL(this.idleL, stats.getInt(12), this.imagePath, "idle");
+                createAnimationArrayL(this.runL, stats.getInt(13), this.imagePath, "run");
+                createAnimationArrayL(this.sattackL, stats.getInt(14), this.imagePath, "sattack");
+                createAnimationArrayL(this.specialL, stats.getInt(15), this.imagePath, "special");
+                createAnimationArrayL(this.ultimateL, stats.getInt(16), this.imagePath, "ultimate");
             }
         }
     }
 
-    public void createAnimationArray(ArrayList<String> animationArray, int frameCount, String path, String animationName) {
+    public void createAnimationArrayR(ArrayList<String> animationArray, int frameCount, String path, String animationName) {
         for (int i = 0; i < frameCount; i++) {
-            animationArray.add(path + animationName + i + ".gif");
+            animationArray.add(path + animationName + i + "r.gif");
+        }
+    }
+
+    public void createAnimationArrayL(ArrayList<String> animationArray, int frameCount, String path, String animationName) {
+        for (int i = 0; i < frameCount; i++) {
+            animationArray.add(path + animationName + i + "l.gif");
         }
     }
 
