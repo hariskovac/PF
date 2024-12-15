@@ -30,12 +30,6 @@ public class BasicGame implements GameLoop {
     long lastBgFrameTime = 0;
     long lastCharFrameTime = 0;
 
-    //Select box variables
-    int xBoxPlayer1 = 775;
-    int yBoxPlayer1 = 490;
-    int xBoxPlayer2 = 775;
-    int yBoxPlayer2 = 490;
-
     public static void main(String[] args) {
         SaxionApp.startGameLoop(new BasicGame(), 1600, 672, 40);
 
@@ -80,40 +74,7 @@ public class BasicGame implements GameLoop {
 
                 break;
             case CHARACTER_SELECT:
-                SaxionApp.drawImage(Variables.PATH_CS + "char_select.jpg", 0, 0, 1600, 672);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_red.png", Variables.CS_P1X, Variables.CS_P1Y);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_blue.png", Variables.CS_P2X, Variables.CS_P2Y);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_fire.png", Variables.CS_P2X - 475, Variables.CS_P1Y + 140);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_water.png", Variables.CS_P2X - 325, Variables.CS_P2Y + 140);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_lightning.png", Variables.CS_P2X - 475, Variables.CS_P1Y + 290);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_random.png", Variables.CS_P2X - 325, Variables.CS_P2Y + 290);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_p1.png", xBoxPlayer1, yBoxPlayer1);
-                SaxionApp.drawImage(Variables.PATH_CS + "frame_p2.png", xBoxPlayer2, yBoxPlayer2);
-                SaxionApp.drawImage(Variables.PATH_CS + "cs_topbar.png", 0, 0, 1600, 128);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_charselect.png", 544, 20);
-                SaxionApp.drawImage(Variables.PATH + "fire/idle0.gif", Variables.CS_P1X - 350, Variables.CS_P1Y - 186);
-                SaxionApp.drawImage(Variables.PATH + "fire/idle0.gif", Variables.CS_P2X - 350, Variables.CS_P2Y - 186);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_p1.png", Variables.CS_P1X - 40, Variables.CS_P1Y - 120);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_p2.png", Variables.CS_P2X - 40, Variables.CS_P2Y - 120);
-                SaxionApp.drawImage(Variables.PATH_CS + "cs_statbg.png", Variables.CS_P1X - 89, Variables.CS_P1Y + 280);
-                SaxionApp.drawImage(Variables.PATH_CS + "cs_statbg.png", Variables.CS_P2X - 89, Variables.CS_P2Y + 280);
-                SaxionApp.drawImage(Variables.PATH_CS + "cs_keysp1.png", 5, 610);
-                SaxionApp.drawImage(Variables.PATH_CS + "cs_keysp2.png", 1370, 610);
-
-                SaxionApp.drawImage(Variables.PATH_CS + "label_hp.png", Variables.CS_P1X - 70, Variables.CS_P1Y + 300);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_hp.png", Variables.CS_P2X - 70, Variables.CS_P2Y + 300);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_sp.png", Variables.CS_P1X + 110, Variables.CS_P1Y + 300);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_sp.png", Variables.CS_P2X + 110, Variables.CS_P2Y + 300);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_atk.png", Variables.CS_P1X - 70, Variables.CS_P1Y + 330);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_atk.png", Variables.CS_P2X - 70, Variables.CS_P2Y + 330);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_satk.png", Variables.CS_P1X + 110, Variables.CS_P1Y + 330);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_satk.png", Variables.CS_P2X + 110, Variables.CS_P2Y + 330);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_def.png", Variables.CS_P1X - 70, Variables.CS_P1Y + 360);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_def.png", Variables.CS_P2X - 70, Variables.CS_P2Y + 360);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_sdef.png", Variables.CS_P1X + 110, Variables.CS_P1Y + 360);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_sdef.png", Variables.CS_P2X + 110, Variables.CS_P2Y + 360);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_spd.png", Variables.CS_P1X - 70, Variables.CS_P1Y + 390);
-                SaxionApp.drawImage(Variables.PATH_CS + "label_spd.png", Variables.CS_P2X - 70, Variables.CS_P2Y + 390);
+                GameManager.drawCharacterSelectScreen();
 
 
                 break;
@@ -180,49 +141,49 @@ public class BasicGame implements GameLoop {
             case CHARACTER_SELECT:
                 // Player 1 box movement
                 if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_D && keyboardEvent.isKeyPressed()) {
-                    xBoxPlayer1 += 150;
-                    if (xBoxPlayer1 > 775) {
-                        xBoxPlayer1 = 625;
+                    Variables.csCursorP1X += 150;
+                    if (Variables.csCursorP1X > 775) {
+                        Variables.csCursorP1X = 625;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_A && keyboardEvent.isKeyPressed()) {
-                    xBoxPlayer1 -= 150;
-                    if (xBoxPlayer1 < 600) {
-                        xBoxPlayer1 = 775;
+                    Variables.csCursorP1X -= 150;
+                    if (Variables.csCursorP1X < 600) {
+                        Variables.csCursorP1X = 775;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_W && keyboardEvent.isKeyPressed()) {
-                    yBoxPlayer1 -= 150;
-                    if (yBoxPlayer1 < 340) {
-                        yBoxPlayer1 = 490;
+                    Variables.csCursorP1Y -= 150;
+                    if (Variables.csCursorP1Y < 340) {
+                        Variables.csCursorP1Y = 490;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_S && keyboardEvent.isKeyPressed()) {
-                    yBoxPlayer1 += 150;
-                    if (yBoxPlayer1 > 490) {
-                        yBoxPlayer1 = 340;
+                    Variables.csCursorP1Y += 150;
+                    if (Variables.csCursorP1Y > 490) {
+                        Variables.csCursorP1Y = 340;
                     }
                 }
 
 
                 // Player 2 box movement
                 if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_RIGHT && keyboardEvent.isKeyPressed()) {
-                    xBoxPlayer2 += 150;
-                    if (xBoxPlayer2 > 775) {
-                        xBoxPlayer2 = 625;
+                    Variables.csCursorP2X += 150;
+                    if (Variables.csCursorP2X > 775) {
+                        Variables.csCursorP2X = 625;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_LEFT && keyboardEvent.isKeyPressed()) {
-                    xBoxPlayer2 -= 150;
-                    if (xBoxPlayer2 < 600) {
-                        xBoxPlayer2 = 775
+                    Variables.csCursorP2X -= 150;
+                    if (Variables.csCursorP2X < 600) {
+                        Variables.csCursorP2X = 775
                         ;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_UP && keyboardEvent.isKeyPressed()) {
-                    yBoxPlayer2 -= 150;
-                    if (yBoxPlayer2 < 340) {
-                        yBoxPlayer2 = 490;
+                    Variables.csCursorP2Y -= 150;
+                    if (Variables.csCursorP2Y < 340) {
+                        Variables.csCursorP2Y = 490;
                     }
                 } else if (keyboardEvent.getKeyCode() == KeyboardEvent.VK_DOWN && keyboardEvent.isKeyPressed()) {
-                    yBoxPlayer2 += 150;
-                    if (yBoxPlayer2 > 490) {
-                        yBoxPlayer2 = 340;
+                    Variables.csCursorP2Y += 150;
+                    if (Variables.csCursorP2Y > 490) {
+                        Variables.csCursorP2Y = 340;
                     }
                 }
         }
